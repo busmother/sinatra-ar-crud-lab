@@ -9,7 +9,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/' do
-    erb :index
+    redirect to '/articles'
   end
 
   get '/articles' do
@@ -23,6 +23,7 @@ class ApplicationController < Sinatra::Base
 
   post '/articles' do
     @article = Article.new(title: params[:title], content: params[:content])
+    @article.save
     erb :show
   end
 
